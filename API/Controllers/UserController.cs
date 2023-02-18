@@ -7,7 +7,6 @@ namespace API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
@@ -17,14 +16,14 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet]
+    [HttpGet, Authorize]
     public ActionResult<UserResponse> GetMe()
     {
         var myUser = _userService.GetMyUser();
         return Ok(myUser);
     }
 
-    [HttpPost("login"), AllowAnonymous]
+    [HttpPost("login")]
     public ActionResult<UserResponseWithToken> Login(UserLoginRequest userLoginRequest)
     {
         return Ok(_userService.Authenticate(userLoginRequest));

@@ -7,8 +7,8 @@ namespace API.UserService;
 public class UserService : IUserService
 {
     // TODO: this is just for demo, you must obviously save the user in your database
-    private static readonly User dbUser = new User() { UserId = 1, Username = "test"};
-    
+    private static readonly User dbUser = new() { UserId = 1, Username = "test" };
+
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IJwtUtils _jwtUtils;
 
